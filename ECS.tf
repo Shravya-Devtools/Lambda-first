@@ -41,15 +41,15 @@ resource "aws_security_group" "ecs_sg" {
 # ------------------------
 # ECS Cluster
 # ------------------------
-resource "aws_ecs_cluster" "my_cluster1" {
-  name = "simple-ecs-cluster1"
+resource "aws_ecs_cluster" "my_cluster" {
+  name = "simple-ecs-cluster"
 }
 
 # ------------------------
 # ECS Task Definition
 # ------------------------
-resource "aws_ecs_task_definition" "my_task1" {
-  family                   = "simple-task1"
+resource "aws_ecs_task_definition" "my_task" {
+  family                   = "simple-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
@@ -58,7 +58,7 @@ resource "aws_ecs_task_definition" "my_task1" {
 
   container_definitions = jsonencode([
     {
-      name      = "deploy-aws-ecr1"
+      name      = "deploy-aws-ecr"
       image     = "226290659955.dkr.ecr.us-east-1.amazonaws.com/deploy-aws-ecr@sha256:59327bf0b7e551b15a50cc64e1e7081e7c55de072d24b5f399007198fe65b4f3"
       essential = true
       portMappings = [
@@ -73,8 +73,8 @@ resource "aws_ecs_task_definition" "my_task1" {
 # ------------------------
 # ECS Service
 # ------------------------
-resource "aws_ecs_service" "my_service1" {
-  name            = "simple-service1"
+resource "aws_ecs_service" "my_service" {
+  name            = "simple-service"
   cluster         = aws_ecs_cluster.my_cluster.id
   task_definition = aws_ecs_task_definition.my_task.arn
   desired_count   = 1
