@@ -42,14 +42,14 @@ resource "aws_security_group" "ecs_sg" {
 # ECS Cluster
 # ------------------------
 resource "aws_ecs_cluster" "my_cluster1" {
-  name = "simple-ecs-cluster"
+  name = "simple-ecs-cluster1"
 }
 
 # ------------------------
 # ECS Task Definition
 # ------------------------
 resource "aws_ecs_task_definition" "my_task1" {
-  family                   = "simple-task"
+  family                   = "simple-task1"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = "256"
